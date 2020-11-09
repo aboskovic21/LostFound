@@ -36,9 +36,39 @@ remotes::install_github("aboskovic21/LostFound")
  
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example: How do different forms of lost identification on the NYC subway compare over time? 
 
-```{r example}
+```{r example, message = FALSE}
 library(LostFound)
-summary(LostFound)
+library(tidyverse)
+
+data("LostFound")
+
+lost_ids <- LostFound %>%
+  mutate(
+    id_change = id - lag(id),
+    credit_change = credit_card - lag(credit_card),
+    debit_change = debit_card - lag(debit_card)
+  ) %>%
+  select(date, id_change, credit_change, debit_change) %>%
+  filter(date > "2014-08-17", date < "2015-07-06")
+
+id_long <- gather(data = lost_ids, key = "change", value = "difference", -c("date"))
+
+ggplot(id_long, aes(x = date, y = difference, color = change)) +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = "Month",
+    y = "Difference in Amount of Lost IDs",
+    title = "Change in Amount of Lost IDs Over Time\n August 2014 - July 2015",
+    color = "ID Type"
+  ) +
+  scale_color_manual(
+    labels = c("Credit Card", "Debit Card", "ID"),
+    values = c("blue", "red", "orange")
+  ) +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
+
+The most frequent lost form of ID on the NYC Subway between August 2014 and July 2015 was debit card. There was a small decrease in change of amount of lost IDs in January of 2015, which could maybe reflect that fewer people were riding the Subway. 
+

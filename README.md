@@ -33,23 +33,44 @@ remotes::install_github("aboskovic21/LostFound")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example: How do different forms of lost identification
+on the NYC subway compare over time?
 
 ``` r
 library(LostFound)
-summary(LostFound)
-#>       date                money           phone          glasses    
-#>  Min.   :2014-08-17   Min.   :25525   Min.   :30124   Min.   :6204  
-#>  1st Qu.:2014-10-25   1st Qu.:26498   1st Qu.:31267   1st Qu.:6380  
-#>  Median :2015-01-16   Median :27573   Median :32355   Median :6591  
-#>  Mean   :2015-01-21   Mean   :27582   Mean   :32380   Mean   :6595  
-#>  3rd Qu.:2015-04-13   3rd Qu.:28598   3rd Qu.:33368   3rd Qu.:6786  
-#>  Max.   :2015-12-04   Max.   :31929   Max.   :37199   Max.   :7413  
-#>        id         credit_card      debit_card       car_keys      house_keys  
-#>  Min.   : 92.0   Min.   :11976   Min.   :22442   Min.   :1419   Min.   :6893  
-#>  1st Qu.: 95.0   1st Qu.:12587   1st Qu.:23722   1st Qu.:1483   1st Qu.:7258  
-#>  Median :101.0   Median :13294   Median :25012   Median :1539   Median :7593  
-#>  Mean   :105.7   Mean   :13307   Mean   :25039   Mean   :1543   Mean   :7583  
-#>  3rd Qu.:118.5   3rd Qu.:13962   3rd Qu.:26291   3rd Qu.:1598   3rd Qu.:7902  
-#>  Max.   :155.0   Max.   :16302   Max.   :30578   Max.   :1784   Max.   :8875
+library(tidyverse)
+
+data("LostFound")
+
+lost_ids <- LostFound %>%
+  mutate(
+    id_change = id - lag(id),
+    credit_change = credit_card - lag(credit_card),
+    debit_change = debit_card - lag(debit_card)
+  ) %>%
+  select(date, id_change, credit_change, debit_change) %>%
+  filter(date > "2014-08-17", date < "2015-07-06")
+
+id_long <- gather(data = lost_ids, key = "change", value = "difference", -c("date"))
+
+ggplot(id_long, aes(x = date, y = difference, color = change)) +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = "Month",
+    y = "Difference in Amount of Lost IDs",
+    title = "Change in Amount of Lost IDs Over Time\n August 2014 - July 2015",
+    color = "ID Type"
+  ) +
+  scale_color_manual(
+    labels = c("Credit Card", "Debit Card", "ID"),
+    values = c("blue", "red", "orange")
+  ) +
+  theme(plot.title = element_text(hjust = 0.5))
 ```
+
+<img src="man/figures/README-example-1.png" width="100%" />
+
+The most frequent lost form of ID on the NYC Subway between August 2014
+and July 2015 was debit card. There was a small decrease in change of
+amount of lost IDs in January of 2015, which could maybe reflect that
+fewer people were riding the Subway.
