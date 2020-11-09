@@ -1,6 +1,6 @@
 library(tidyverse)
 LostFound <- readr::read_csv(
-  "nyc_data.csv"
+  "LostFound.csv"
 ) %>%
   janitor::clean_names() %>%
   dplyr::rename(
