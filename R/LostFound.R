@@ -7,7 +7,7 @@
 #' @aliases LostFound LostFound-package
 NULL
 
-#' "Lost and (not yet) Found"
+#' "LostFound"
 #'
 #' A data set containing items lost on
 #' the NYC MTA each day
