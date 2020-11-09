@@ -20,7 +20,7 @@ A dataframe with 251 elements
 }
 }
 \source{
-\url{http://fivethirtyeight.com/datalab/mta-new-york-lost-and-found-subway-most-common/}
+\url{https://github.com/atmccann/mta-lost-found/}
 }
 \usage{
 LostFound

@@ -13,7 +13,7 @@ NULL
 #' the NYC MTA each day
 #' in 2014 and 2015
 #'
-#' @source \url{http://fivethirtyeight.com/datalab/mta-new-york-lost-and-found-subway-most-common/}
+#' @source \url{https://github.com/atmccann/mta-lost-found/}
 #' @format A dataframe with 251 elements
 #' \describe{
 #'   \item{date}{Date the item was lost}

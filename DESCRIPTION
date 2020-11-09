@@ -10,9 +10,9 @@ Authors@R:
 Description: Information on what people lost on the New York City MTA every day in 2014 and 2015.
 URL: https://github.com/aboskovic21/LostFound
 License: MIT + file LICENSE
-Encoding: UTF-8
 LazyData: true
+Encoding: UTF-8
 Depends: 
-    R (>= 2.10)
+    R (>= 3.50)
 BugReports: https://github.com/aboskovic21/LostFound/issues
 RoxygenNote: 7.1.1
