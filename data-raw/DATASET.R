@@ -16,4 +16,4 @@ LostFound <- readr::read_csv(
   dplyr::select(
     date, money, phone, glasses, id, credit_card, debit_card, car_keys, house_keys
   )
-usethis::use_data(LostFound)
+usethis::use_data(LostFound, overwrite = TRUE)
