@@ -7,15 +7,25 @@
 
 <!-- badges: end -->
 
-The goal of LostFound is to …
+The goal of LostFound is to provide a useful data set in R.
+
+This data set comes from DataIsPlural available as a spreadsheet
+[here.](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0)
+It is from 12/30/2015, with the headline “Things lost (and not yet
+found) on the New York subway.”
+
+Fivethirtyeight has an interesting article with some interesting
+findings about this dataset
+[here.](https://fivethirtyeight.com/features/mta-new-york-lost-and-found-subway-most-common/)
 
 ## Installation
 
 You can install the released version of LostFound from
-[CRAN](https://CRAN.R-project.org) with:
+[GitHub](https://github.com/) with:
 
 ``` r
-install.packages("LostFound")
+# install.packages("devtools")
+remotes::install_github("aboskovic21/LostFound")
 ```
 
 ## Example
@@ -24,29 +34,5 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(LostFound)
-## basic example code
+#summary(LostFound)
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
