@@ -13,3 +13,4 @@ License: MIT + file LICENSE
 Depends: 
     R (>= 2.10)
 BugReports: https://github.com/aboskovic21/LostFound/issues
+RoxygenNote: 7.1.1
