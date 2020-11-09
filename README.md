@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/aboskovic21/LostFound/workflows/R-CMD-check/badge.svg)](https://github.com/aboskovic21/LostFound/actions)
 <!-- badges: end -->
 
 The goal of LostFound is to provide a useful data set in R.
